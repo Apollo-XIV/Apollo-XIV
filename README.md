@@ -1,5 +1,5 @@
 ### Hi there 👋
-Ny name is Alex! I'm a DevOps apprentice working in the North West. I like to work on all sorts of things, but recently I've been learning webdev.
+My name is Alex! I'm a DevOps apprentice working in the North West. I like to work on all sorts of things, but recently I've been learning webdev.
 You can check out some of my projects here:
 - hierophant.dev
 - alexcrease.dev
