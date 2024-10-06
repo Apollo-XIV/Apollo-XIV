@@ -1,0 +1,16 @@
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <!-- use tailwind CDN during development -->
+  <if name="is_dev">
+    <script src="https://cdn.tailwindcss.com"></script>
+  </if>
+  <unless name="is_dev">
+    <link rel="stylesheet" href="static/tw.css" />
+  </unless>
+  <link rel="stylesheet" href="static/main.css" />
+
+  <!-- use title provided by context -->
+  <title>@title</title>
+</head>

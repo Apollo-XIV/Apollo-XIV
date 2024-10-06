@@ -2,7 +2,7 @@ import tagg_config.{type Tagg}
 import wisp
 
 pub type Context {
-  Context(tagg: Tagg, posts_dir: String)
+  Context(tagg: Tagg, static_dir: String, env: String, posts_dir: String)
 }
 
 /// The middleware stack that the request handler uses. The stack is itself a
@@ -17,6 +17,7 @@ pub type Context {
 ///
 pub fn middleware(
   req: wisp.Request,
+  ctx: Context,
   handle_request: fn(wisp.Request) -> wisp.Response,
 ) -> wisp.Response {
   // Permit browsers to simulate methods other than GET and POST using the
@@ -31,6 +32,7 @@ pub fn middleware(
 
   // Rewrite HEAD requests to GET requests and return an empty body.
   use req <- wisp.handle_head(req)
+  use <- wisp.serve_static(req, under: "/static", from: ctx.static_dir)
 
   // Handle the request!
   handle_request(req)

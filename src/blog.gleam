@@ -18,10 +18,10 @@ fn start_server(current_dir_path: String) {
   let web_context =
     web.Context(
       tagg_config.Tagg(filepath.join(current_dir_path, "views"), tag_config),
+      filepath.join(current_dir_path, "public"),
+      "dev",
       filepath.join(current_dir_path, "posts"),
     )
-
-  io.println(web_context.tagg.base_dir_path)
 
   // This sets the logger to print INFO level logs, and other sensible defaults
   // for a web application.

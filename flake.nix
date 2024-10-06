@@ -66,7 +66,8 @@
             (pkgs.writeShellScriptBin "ask" ''
               ollama run mistral $1
             '')
-
+            tailwindcss
+            just
           ];
         };
       };

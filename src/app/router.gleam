@@ -10,7 +10,7 @@ import wisp.{type Request, type Response}
 
 // https://github.com/gleam-wisp/wisp/blob/main/examples/01-routing/src/app/router.gleam
 pub fn handle_request(req: Request, web_context: Context) -> Response {
-  use req <- web.middleware(req)
+  use req <- web.middleware(req, web_context)
 
   // Wisp doesn't have a special router abstraction, instead we recommend using
   // regular old pattern matching. This is faster than a router, is type safe,
@@ -32,8 +32,10 @@ fn home_page(req: Request, web_context: Context) -> Response {
   // used to return a 405: Method Not Allowed response for all other methods.
   use <- wisp.require_method(req, Get)
 
-  let context = cx.dict()
-  // |> cx.add_string("title", "Home | Apollo_")
+  let context =
+    cx.dict()
+    |> cx.add_string("title", "Home | Apollo_")
+    |> cx.add_bool("is_dev", web_context.env == "dev")
   // |> cx.add("settings", cx.add_string(cx.dict(), "className", "myClass"))
   // |> cx.add_string("company_address1", "123 Main St")
   // |> cx.add_list("people", [
@@ -57,7 +59,7 @@ fn home_page(req: Request, web_context: Context) -> Response {
 fn posts(req: Request, web_context: Context) -> Response {
   use <- wisp.require_method(req, Get)
 
-  case posts.render_posts_page(web_context.posts_dir) {
+  case posts.render_posts_page(web_context) {
     Ok(html) -> {
       wisp.ok()
       |> wisp.html_body(string_builder.from_string(html))
