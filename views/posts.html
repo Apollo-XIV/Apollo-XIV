@@ -5,9 +5,10 @@
 
 <body>
   <component path="/header.html" />
-  <h1 class="">Posts</h1></body>
+  <h1 class="">Posts</h1>
   <for items="posts" item="post" index="i">
-    <li>@post.title</li>
+    <a href=@post.path>@post.title</li>
   </for>
+</body>
 
 </html>

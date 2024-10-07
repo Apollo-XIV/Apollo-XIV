@@ -19,9 +19,15 @@ pub fn render_posts_page(web_context: Context) -> Result(String, Nil) {
     |> cx.add_bool("is_dev", web_context.env == "dev")
     |> cx.add_list("posts", {
       posts
-      |> list.map(fn(title) {
+      |> list.map(fn(url) {
         cx.dict()
-        |> cx.add_string("title", title)
+        |> cx.add_string("title", {
+          url
+          |> string.split(".")
+          |> list.first
+          |> result.unwrap("Title not found")
+        })
+        |> cx.add_string("path", "/posts/" <> url)
       })
     })
 
