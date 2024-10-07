@@ -4,6 +4,7 @@ import gleam/io
 import gleam/option
 import gleam/result
 import gleam_community/ansi
+import jot
 import simplifile
 import tom
 
@@ -40,6 +41,7 @@ pub fn get_post(paths_dir: String, path: String) -> Result(Post, Nil) {
       let assert Ok(meta) = tom.parse(frontmatter)
       let assert Ok(post_title) = tom.get_string(meta, ["title"])
       let assert Ok(date) = tom.get_string(meta, ["date"])
+      let content = jot.to_html(content)
       Post(post_title, date, path, content)
     })
   })
