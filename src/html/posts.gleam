@@ -4,6 +4,7 @@ import cx
 import gleam/io
 import gleam/list
 import gleam/result
+import gleam/string
 import gleam_community/ansi
 import tagg
 
@@ -29,6 +30,30 @@ pub fn render_posts_page(web_context: Context) -> Result(String, Nil) {
     "Couldn't render the template"
     |> ansi.red
     |> io.println
+  })
+  |> result.nil_error
+}
+
+pub fn render_post_page(
+  web_context: Context,
+  post_path: String,
+) -> Result(String, Nil) {
+  posts.get_post(web_context.posts_dir, post_path)
+  |> result.map(fn(p) {
+    cx.dict()
+    |> cx.add_string("title", p.title <> " | Apollo_")
+    |> cx.add_bool("is_dev", web_context.env == "dev")
+    |> cx.add_string("post_title", p.title)
+    |> cx.add_string("post_content", p.content)
+  })
+  |> result.try(fn(ctx) {
+    tagg.render(web_context.tagg, "post.html", ctx)
+    |> result.map_error(fn(e) {
+      e
+      |> string.inspect
+      |> ansi.red
+      |> io.println
+    })
   })
   |> result.nil_error
 }

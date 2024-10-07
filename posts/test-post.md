@@ -1,5 +1,6 @@
 ---
-date: 21-03-03
+title = "This is a title"
+date = "21-03-03"
 ---
 # This is a test post
 ## Introduction
