@@ -1,0 +1,7 @@
+  <!-- use tailwind CDN during development -->
+  <!-- <if name="is_dev"> -->
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <!-- </if> -->
+  <!-- <unless name="is_dev"> -->
+
+  <!-- </unless> -->

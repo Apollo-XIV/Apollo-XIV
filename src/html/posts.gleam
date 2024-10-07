@@ -16,7 +16,7 @@ pub fn render_posts_page(web_context: Context) -> Result(String, Nil) {
   let context =
     cx.dict()
     |> cx.add_string("title", "Posts | Apollo_")
-    |> cx.add_bool("is_dev", web_context.env == "dev")
+    // |> cx.add_bool("is_dev", web_context.env == "dev")
     |> cx.add_list("posts", {
       posts
       |> list.map(fn(url) {
@@ -48,9 +48,14 @@ pub fn render_post_page(
   |> result.map(fn(p) {
     cx.dict()
     |> cx.add_string("title", p.title <> " | Apollo_")
-    |> cx.add_bool("is_dev", web_context.env == "dev")
-    |> cx.add_string("post_title", p.title)
-    |> cx.add_string("post_content", p.content)
+    // |> cx.add_bool("is_dev", web_context.env == "dev")
+    |> cx.add(
+      "post",
+      cx.dict()
+        |> cx.add_string("title", p.title)
+        |> cx.add_string("content", p.content)
+        |> cx.add_string("date", p.date),
+    )
   })
   |> result.try(fn(ctx) {
     tagg.render(web_context.tagg, "post.html", ctx)

@@ -1,4 +1,4 @@
 
 build-css:
     #!/usr/bin/env bash
-    tailwindcss --output public/tw.css
+    tailwindcss --input priv/main.css --output public/tw.css

@@ -19,7 +19,7 @@ fn start_server(current_dir_path: String) {
     web.Context(
       tagg_config.Tagg(filepath.join(current_dir_path, "views"), tag_config),
       filepath.join(current_dir_path, "public"),
-      "dev",
+      "test",
       filepath.join(current_dir_path, "posts"),
     )
 
