@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en-GB">
-
-<component path="/head.html" />
-
-<body>
-  <component path="/header.html" />
-  <h1 class="">Posts</h1>
-  <ul class="">
-    <for items="posts" item="post" index="i">
-      <li><a href=@post.path>@post.title</a></li>
-    </for>
-  </ul>
-</body>
-
-</html>
+<h1 class="">Posts</h1>
+<ul class="">
+  <for items="posts" item="post" index="i">
+    <li><a href=@post.path>@post.title</a></li>
+  </for>
+</ul>

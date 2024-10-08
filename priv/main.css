@@ -30,7 +30,7 @@ body {
 }
 
 .page-content {
-  @apply max-w-3xl pl-3 pr-3;
+  @apply max-w-3xl w-full pl-3 pr-3;
   height: 100%;
   overflow-y: scroll;
 }

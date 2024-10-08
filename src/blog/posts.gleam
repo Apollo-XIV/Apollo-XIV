@@ -1,8 +1,10 @@
 import facet
 import filepath
 import gleam/io
+import gleam/list
 import gleam/option
 import gleam/result
+import gleam/string
 import gleam_community/ansi
 import jot
 import simplifile
@@ -15,24 +17,30 @@ pub type Post {
 pub fn list_posts(posts_dir: String) -> List(String) {
   simplifile.read_directory(posts_dir)
   |> result.unwrap([])
+  |> list.filter_map(fn(post_url) {
+    // remove .md
+    post_url
+    |> string.split(".")
+    |> list.first
+  })
 }
 
-pub fn get_post(paths_dir: String, path: String) -> Result(Post, Nil) {
+pub fn get_post(paths_dir: String, path: String) -> Result(Post, String) {
   paths_dir
-  |> filepath.join(path)
+  |> filepath.join(path <> ".md")
   |> simplifile.read
-  |> result.nil_error
+  |> result.replace_error("Couldn't find path " <> path)
   |> result.try(fn(x) {
     x
     |> facet.parse
-    |> result.nil_error
+    |> result.replace_error("Facet couldn't parse the document" <> x)
   })
   // error if theres no frontmatter
   |> result.try(fn(document) {
     case document.frontmatter {
       // returns the frontmatter and document content in a tuple
       option.Some(f) -> Ok(#(f.content, document.content))
-      option.None -> Error(Nil)
+      option.None -> Error("Couldn't find any frontmatter")
     }
   })
   |> result.try(fn(document_pair) {
@@ -45,9 +53,11 @@ pub fn get_post(paths_dir: String, path: String) -> Result(Post, Nil) {
       Post(post_title, date, path, content)
     })
   })
-  |> result.map_error(fn(_e) {
-    "Couldn't fetch post data"
-    |> ansi.red
-    |> io.println
-  })
+  // |> result.map_error(fn(_e) {
+  //   let error = "Couldn't fetch post data"
+  //   error
+  //   |> ansi.red
+  //   |> io.println
+  //   error
+  // })
 }
