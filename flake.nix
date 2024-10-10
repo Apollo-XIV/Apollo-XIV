@@ -61,6 +61,7 @@
             gleam
             direnv
             erlang_27
+            rebar3
             nix-direnv
             terraform
             (pkgs.writeShellScriptBin "ask" ''
