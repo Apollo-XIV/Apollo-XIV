@@ -49,7 +49,7 @@ pub fn main() -> Nil {
     let _copy_static = {
       simplifile.copy_directory(
         filepath.join(pwd, "public"),
-        filepath.join(pwd, "site/static"),
+        filepath.join(pwd, "site/assets"),
       )
       |> file_err_to_string("Couldn't copy static assets")
     }
