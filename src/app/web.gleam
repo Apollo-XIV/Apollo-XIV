@@ -32,7 +32,7 @@ pub fn middleware(
 
   // Rewrite HEAD requests to GET requests and return an empty body.
   use req <- wisp.handle_head(req)
-  use <- wisp.serve_static(req, under: "/static", from: ctx.static_dir)
+  use <- wisp.serve_static(req, under: "/assets", from: ctx.static_dir)
 
   // Handle the request!
   handle_request(req)
