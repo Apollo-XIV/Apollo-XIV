@@ -2,5 +2,6 @@
 *.ez
 /build
 .direnv
+site
 result
 erl_crash.dump

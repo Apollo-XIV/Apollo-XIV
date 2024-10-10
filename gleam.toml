@@ -27,6 +27,8 @@ gleam_community_ansi = ">= 1.4.1 and < 2.0.0"
 jot = ">= 1.0.2 and < 2.0.0"
 facet = ">= 0.1.0 and < 1.0.0"
 tom = ">= 1.1.0 and < 2.0.0"
+argv = ">= 1.0.2 and < 2.0.0"
+shellout = ">= 1.6.0 and < 2.0.0"
 
 [dev-dependencies]
 gleeunit = ">= 1.0.0 and < 2.0.0"
