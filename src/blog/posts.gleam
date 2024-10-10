@@ -11,7 +11,13 @@ import simplifile
 import tom
 
 pub type Post {
-  Post(title: String, date: String, path: String, content: String)
+  Post(
+    title: String,
+    date: String,
+    abstract: String,
+    path: String,
+    content: String,
+  )
 }
 
 pub fn list_posts(posts_dir: String) -> List(String) {
@@ -49,8 +55,9 @@ pub fn get_post(paths_dir: String, path: String) -> Result(Post, String) {
       let assert Ok(meta) = tom.parse(frontmatter)
       let assert Ok(post_title) = tom.get_string(meta, ["title"])
       let assert Ok(date) = tom.get_string(meta, ["date"])
+      let assert Ok(abstract) = tom.get_string(meta, ["abstract"])
       let content = jot.to_html(content)
-      Post(post_title, date, path, content)
+      Post(post_title, date, abstract, path, content)
     })
   })
   // |> result.map_error(fn(_e) {

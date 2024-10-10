@@ -21,6 +21,7 @@ pub fn render_posts_page(web_context: Context) -> Result(String, String) {
     // generate the posts context list
     cx.dict()
     |> cx.add_string("title", post_record.title)
+    |> cx.add_string("abstract", post_record.abstract)
     |> cx.add_string("date", post_record.date)
     |> cx.add_string("path", "/posts/" <> post_record.path)
   }

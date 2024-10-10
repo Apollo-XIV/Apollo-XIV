@@ -42,9 +42,14 @@ pub fn main() -> Nil {
     }
     use _ <- result.try(format_html)
 
-    let _update_css = {
-      "Code will go here"
+    let update_css = {
+      use #(_ecode, msg) <- result.map_error(
+        shellout.command(run: "just", with: ["build-css"], in: pwd, opt: []),
+      )
+      msg
     }
+
+    use _ <- result.try(update_css)
 
     let _copy_static = {
       simplifile.copy_directory(

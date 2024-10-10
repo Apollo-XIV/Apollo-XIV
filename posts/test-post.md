@@ -1,6 +1,7 @@
 ---
 title = "This is a title"
-date = "21-03-03"
+abstract = "A test post with lorem ipsum"
+date = "21/03/22"
 ---
 ## Introduction
 

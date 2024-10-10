@@ -1,6 +1,16 @@
-<h1 class="">Posts</h1>
-<ul class="">
+<h1 class="pt-8 text-xl font-bold">Blog Posts</h1>
+<p>
+  These are all of my blog posts and more. In them I talk about programming,
+  music, and basically anything else I'm interested in at the moment.
+</p>
+<div class="mt-5 h-[1px] bg-white w-full"> </div>
+
+<div class="pt-5 flex flex-col-reverse gap-2">
   <for items="posts" item="post" index="i">
-    <li><a href="@post.path">@post.title</a></li>
+    <a class="p-4 bg-stone-950 rounded-lg" href="@post.path">
+      <h2 class="text-lg text-stone-200 hover:text-amber-400 hover:underline">@post.title</h2>
+      <p>@post.abstract</p>
+      <p class="text-sm opacity-50"><i>@post.date</i></p>
+    </a>
   </for>
-</ul>
+</div>
