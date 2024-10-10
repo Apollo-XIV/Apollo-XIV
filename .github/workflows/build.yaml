@@ -12,14 +12,12 @@ jobs:
     permissions: write-all
     steps:
       - uses: actions/checkout@v4
-      - uses: erlef/setup-beam@v1
-        with:
-          otp-version: "26.0.2"
-          gleam-version: "1.5.0"
-          rebar3-version: "3"
-          # elixir-version: "1.15.4"
-      - run: gleam deps download
+
+      - name: "Setup env"
+        uses: JRMurr/direnv-nix-action@v4.1.0
+
       - run: gleam run build
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
