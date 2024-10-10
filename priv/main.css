@@ -3,6 +3,7 @@
 @tailwind utilities;
 @import url('https://fonts.cdnfonts.com/css/margesh');
 @import url('https://fonts.cdnfonts.com/css/ibm-plex-mono');
+@import url('https://fonts.cdnfonts.com/css/pp-pangaia');
 
 body {
   @apply bg-stone-900 text-slate-200;
@@ -35,7 +36,7 @@ a {
   }
 
   #pagetitle {
-    font-family: margesh;
+    font-family: "";
   }
 
   a {

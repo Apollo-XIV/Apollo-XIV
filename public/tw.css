@@ -752,7 +752,7 @@ a {
     /* Place the overlay behind the text */
   }
   #pagetitle {
-    font-family: margesh;
+    font-family: "";
   }
   a {
     z-index: 3;
