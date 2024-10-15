@@ -51,7 +51,21 @@ a {
 }
 
 .post-content {
+  @apply text-justify;
   padding-top: 3rem;
+  font-family: 'IBM Plex Mono';
+
+  pre {
+    @apply p-2 bg-stone-800 rounded-lg;
+  }
+
+  blockquote {
+    @apply bg-stone-950 p-4 rounded-xl opacity-70;
+  }
+
+  a {
+    @apply underline text-amber-300;
+  }
 
   .title-header {
     position: relative;

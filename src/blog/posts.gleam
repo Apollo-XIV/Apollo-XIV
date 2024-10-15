@@ -7,6 +7,7 @@ import gleam/result
 import gleam/string
 import gleam_community/ansi
 import jot
+import kirala/bbmarkdown/html_renderer
 import simplifile
 import tom
 
@@ -56,7 +57,9 @@ pub fn get_post(paths_dir: String, path: String) -> Result(Post, String) {
       let assert Ok(post_title) = tom.get_string(meta, ["title"])
       let assert Ok(date) = tom.get_string(meta, ["date"])
       let assert Ok(abstract) = tom.get_string(meta, ["abstract"])
-      let content = jot.to_html(content)
+      // let content = jot.to_html(content)
+      let content = html_renderer.convert(content)
+      // let content = render_md.render(content)
       Post(post_title, date, abstract, path, content)
     })
   })
