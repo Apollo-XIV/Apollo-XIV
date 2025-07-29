@@ -13,15 +13,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # - name: "Setup env"
-      #   uses: JRMurr/direnv-nix-action@v4.1.0
+      - name: "Setup env"
+        uses: JRMurr/direnv-nix-action@v4.1.0
 
-      # - run: gleam run build
+      - run: gleam run build
 
-      - uses: actions/upload-pages-artifact@v4
-        with:
-          path: site
+      # - uses: actions/upload-pages-artifact@v4
+      #   with:
+      #     path: site
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      # - name: Deploy to GitHub Pages
+      #   id: deployment
+      #   uses: actions/deploy-pages@v4
