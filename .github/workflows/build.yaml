@@ -18,7 +18,7 @@ jobs:
 
       - run: gleam run build
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: site
 
